@@ -1,0 +1,411 @@
+.product_mana_pan {
+    padding: 0 12px 0 12px;
+}
+
+.product_add_title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form_pan {
+    width: 100%;
+    background-color: white;
+    padding: 20px 20px;
+    /* border: 1px solid gray; */
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.form_pan h4 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #7d49ff;
+}
+
+.user_product_img_pan {
+    width: 780px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    gap: 10px;
+}
+
+.user_product_img_first {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    grid-area: 1 / 1 / 3 / 3;
+}
+
+.user_product_img_first img {
+    position: absolute;
+    cursor: pointer;
+    width: 240;
+    height: 232px;
+    border-radius: 8px;
+    border: 1px solid #d5d5d5;
+    object-fit: contain;
+}
+
+.user_product_img_first .delete_image {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -10px;
+    right: -10px;
+    border: 1px solid #847fba;
+    border-radius: 15px;
+    background-color: white;
+    cursor: pointer;
+    display: none;
+}
+
+.sub_image_pan {
+    position: relative;
+    width: 111px;
+    height: 111px;
+}
+
+.sub_image_pan .view_image,
+.add_image {
+    position: absolute;
+    width: 111px;
+    height: 111px;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+    object-fit: contain;
+    cursor: pointer;
+    /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
+}
+
+@media screen and (max-width: 1800px) {
+    .user_product_img_first {
+        width: 220px;
+        height: 220px;
+    }
+
+    .user_product_img_first img {
+        width: 220px;
+        height: 216px;
+    }
+
+    .sub_image_pan {
+        position: relative;
+        width: 100px;
+        height: 100x;
+    }
+
+    .sub_image_pan .view_image,
+    .add_image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 1560px) {
+    .user_product_img_first {
+        width: 200px;
+        height: 200px;
+    }
+
+    .user_product_img_first img {
+        width: 200;
+        height: 198px;
+    }
+
+    .sub_image_pan {
+        position: relative;
+        width: 90px;
+        height: 90px;
+    }
+
+    .sub_image_pan .view_image,
+    .add_image {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+
+@media screen and (max-width: 1440px) {
+    .user_product_img_first {
+        width: 160px;
+        height: 160px;
+    }
+
+    .user_product_img_first img {
+        width: 160;
+        height: 158px;
+    }
+
+    .sub_image_pan {
+        position: relative;
+        width: 70px;
+        height: 70px;
+    }
+
+    .sub_image_pan .view_image,
+    .add_image {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media screen and (max-width: 1230px) {
+    .user_product_img_first {
+        width: 120px;
+        height: 120px;
+    }
+
+    .user_product_img_first img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sub_image_pan {
+        width: 55px;
+        height: 55px;
+    }
+
+    .sub_image_pan .view_image, .add_image {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .user_product_img_first {
+        width: 100px;
+        height: 100px;
+    }
+
+    .user_product_img_first img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sub_image_pan {
+        width: 45px;
+        height: 45px;
+    }
+
+    .sub_image_pan .view_image, .add_image {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .user_product_img_first {
+        width: 70px;
+        height: 70px;
+    }
+
+    .user_product_img_first img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sub_image_pan {
+        width: 34px;
+        height: 34px;
+    }
+
+    .sub_image_pan .view_image, .add_image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .user_product_img_pan {
+        gap: 4px;
+    }
+}
+
+.sub_image_pan .delete_image {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -10px;
+    right: -10px;
+    border: 1px solid #847fba;
+    border-radius: 15px;
+    background-color: white;
+    cursor: pointer;
+    display: none;
+}
+
+.user_product_img_pan .add_image {
+    cursor: pointer;
+}
+
+.form-control-tag {
+    /* display: block; */
+    width: 100%;
+    padding: 4px 8px;
+    font-weight: 400;
+    line-height: 1.5;
+    min-height: 48px;
+
+    color: #4a5568;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form_pan .barcode_img {
+    cursor: pointer;
+    width: 50px;
+}
+
+.user_product_catetory_pan {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user_product_catetory_pan div {
+    border: 1px solid gray;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.user_product_catetory_pan input {
+    border: 1px solid gray;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.user_product_option_pan {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user_product_option_pan .option_row {
+    display: flex;
+    flex-direction: row;
+    margin: 4px 0;
+}
+
+.option_row .option_name {
+    width: 30%;
+    height: 100%;
+    font-size: 16px;
+    padding: 4px;
+    background-color: #efefef;
+    border-radius: 4px;
+    word-wrap: break-word;
+}
+
+.option_row .option_description {
+    width: 70%;
+    height: 100%;
+    font-size: 16px;
+    margin-left: 8px;
+    border-radius: 4px;
+    word-wrap: break-word;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    gap: 4px;
+}
+
+.option_description div {
+    background-color: #f2f1ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.option_edit,
+.option_delete {
+    display: flex;
+    align-items: center;
+}
+
+.option_row img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.add_option {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.user_product_material_pan {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user_product_material_pan input {
+    border: 1px solid gray;
+    min-width: 48px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.user_product_material_pan button {
+    border: 1px solid gray;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.category_pan {
+    width: 100%;
+    max-height: 480px;
+    border: none !important;
+    overflow-y: auto;
+}
+
+.category_pan div {
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.category_pan input {
+    width: 24px;
+    height: 24px;
+}
+
+.category_pan label {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.form-group {
+    width: 100%;
+    max-height: 480px;
+    border: none !important;
+    overflow-y: auto;
+}
+
+.form-group div {
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.form-group input {
+    width: 24px;
+    height: 24px;
+}
+
+.form-group label {
+    font-size: 20px;
+    padding-left: 10px;
+}

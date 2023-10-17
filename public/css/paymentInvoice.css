@@ -1,0 +1,68 @@
+.body {
+    margin: 2rem 8rem;
+}
+
+.body-inner {
+    gap: 2rem;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 2fr 1fr;
+}
+
+.card-wrapper {
+    border-radius: 13px;
+}
+
+.pdffile {
+    height: 100%;
+}
+.pdffile > img {
+    height: 4rem;
+}
+
+.pay {
+    background: #5469d4;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    border-radius: 4px;
+    border: 0;
+    padding: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    transition: all 0.2s ease;
+    box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+    width: 100%;
+}
+.pay:hover {
+    background: #5469d4b1;
+}
+
+.label {
+    width: 8rem;
+    color: #333;
+    font-size: 1.25rem;
+}
+.input {
+    width: 100%;
+}
+.form-group {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 0 1fr 1fr 0;
+}
+
+@media screen and (max-width: 959px) {
+    .body-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .body {
+        margin: 2rem;
+    }
+
+    .pdffile {
+        height: 600px;
+    }
+}
