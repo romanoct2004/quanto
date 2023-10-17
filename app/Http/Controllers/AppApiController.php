@@ -651,18 +651,12 @@ class AppApiController extends Controller
              */
             $product = UserProduct::findOrFail($id);
 
-            $imageUrlFullPath = '';
-            foreach ($product->getImageUrlsFullPath() as $key => $v) {
-                $imageUrlFullPath = !empty($v['url']) ? $v['url'] : '';
-            }
-
             $options = [];
             foreach ($product->getOptionsArray() as $key => $v) {
                 $options[$v['name']] = $v['descriptions'];
             }
 
             $data = [
-                'image_url_full_path' => $imageUrlFullPath,
                 'product_id' => $product->getProductID(),
                 'name' => $product->name,
                 'price' => $product->price,
@@ -670,7 +664,8 @@ class AppApiController extends Controller
                 'detail' => $product->detail,
                 'brandName' => $product->brandName,
                 'sku' => $product->sku,
-                'options' => $options
+                'options' => $options,
+                'images' => $product->getImageUrlsFullPath(),
             ];
 
             return response()->json([
