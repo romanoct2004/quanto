@@ -642,4 +642,50 @@ class AppApiController extends Controller
             )
         );
     }
+
+    public function productViewApi($id)
+    {
+        try {
+            /**
+             * @var UserProduct
+             */
+            $product = UserProduct::findOrFail($id);
+            $product->getOptionsText = $product->getOptionsText($product->user_id);
+            $product->getOptions = $product->getOptions($product->user_id);
+            $product->getOptions2 = $product->getOptions2($product->user_id);
+
+            $imageUrlFullPath = '';
+            foreach ($product->getImageUrlsFullPath() as $key => $v) {
+                $imageUrlFullPath = !empty($v['url']) ? $v['url'] : '';
+            }
+
+            $options = [];
+            foreach ($product->getOptionsArray() as $key => $v) {
+                $options[$v['name']] = $v['descriptions'];
+            }
+
+            $data = [
+                'image_url_full_path' => $imageUrlFullPath,
+                'product_id' => $product->getProductID(),
+                'name' => $product->name,
+                'price' => $product->price,
+                'price_text' => $product->price . '円',
+                'detail' => $product->detail,
+                'brandName' => $product->brandName,
+                'sku' => $product->sku,
+                'options' => $options
+
+            ];
+
+            return response()->json([
+                'status' => 'successful',
+                'product' => $data
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => 'productNotExist',
+                'product' => []
+            ]);
+        }
+    }
 }
