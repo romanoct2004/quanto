@@ -656,16 +656,29 @@ class AppApiController extends Controller
                 $options[$v['name']] = $v['descriptions'];
             }
 
+            $adminHost = Config::get('constants.adminHost');
+
+            $images = $product->getImageUrlsFullPath();
+            $images = array_filter($images, function($image) {
+                return !empty($image["name"]);
+            });
+
             $data = [
+                'page_url' => sprintf('%s/product-view/%s', $adminHost, $product->id),
+                'images' => $images,
                 'product_id' => $product->getProductID(),
-                'name' => $product->name,
-                'price' => $product->price,
-                'price_text' => $product->price . '円',
-                'detail' => $product->detail,
                 'brandName' => $product->brandName,
-                'sku' => $product->sku,
+                'name' => $product->name,
+                'flag_price2' => $product->flagPrice2,
+                'price' => $product->price,
+                'price_txt' => $product->price_txt,
+                'price2' => $product->price2,
+                'price2_txt' => $product->price2_txt,
+                'category_ids' => $product->getCategoryIds_(),
+                'categories' => $product->getCategoryText(),
                 'options' => $options,
-                'images' => $product->getImageUrlsFullPath(),
+                'detail' => $product->detail,
+                'barcode' => $product->barcode,
             ];
 
             return response()->json([
