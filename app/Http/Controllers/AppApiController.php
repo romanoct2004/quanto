@@ -667,7 +667,7 @@ class AppApiController extends Controller
                 'page_url' => sprintf('%s/product-view/%s', $adminHost, $product->id),
                 'images' => $images,
                 'product_id' => $product->getProductID(),
-                'brandName' => $product->brandName,
+                'brand_name' => $product->brandName,
                 'name' => $product->name,
                 'flag_price2' => $product->flagPrice2,
                 'price' => $product->price,
