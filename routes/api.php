@@ -48,10 +48,17 @@ Route::post('getUserList', [AppApiController::class, 'getUserList']);
 Route::post('products/getList', [AppApiController::class, 'getProductList']);
 Route::post('products/getByBarcode', [AppApiController::class, 'getProductByBarcode']);
 Route::post('products/getProduct/{id}', [AppApiController::class, 'productViewApi']);
+Route::post('products/getAll', [AppApiController::class, 'getAll']);
 
 //SaveItem
 Route::post('products/getSaveItemList', [AppApiController::class, 'getSaveItemList']);
 Route::post('products/addSaveItem', [AppApiController::class, 'addSaveItem']);
+
+// category
+Route::post('categories/getAll', [AppApiController::class, 'getAllCategory']);
+
+// brand
+Route::post('brands/getAll', [AppApiController::class, 'getAllBrand']);
 
 //Invoice Create
 Route::post('products/makeInvoice', [AppApiController::class, 'makeInvoice']);

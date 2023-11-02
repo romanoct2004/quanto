@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyMail;
+use App\Models\UserProductCategory;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use PDF;
 
@@ -679,16 +682,130 @@ class AppApiController extends Controller
                 'options' => $options,
                 'detail' => $product->detail,
                 'barcode' => $product->barcode,
+                'sku' => $product->sku,
+                'stock' => $product->stock
             ];
 
             return response()->json([
-                'status' => 'successful',
+                'status' => true,
                 'product' => $data
             ]);
         } catch (\Throwable $e) {
             return response()->json([
-                'status' => 'productNotExist',
+                'status' => false,
+                'message' => $e->getMessage(),
                 'product' => []
+            ]);
+        }
+    }
+
+    public function getAll(Request $request)
+    {
+        try {
+            $perPage = $request->perPage ?? 10;
+            $orderBy = $request->orderby ?? 'id';
+            $order = $request->order ?? 'desc';
+            $cagetoryFilter = $request->categoryFilter;
+            $brandFilter = $request->brandFilter;
+
+            /**
+             * @var \Illuminate\Pagination\Paginator
+             */
+            $products = UserProduct::where(function($q) use ($cagetoryFilter, $brandFilter) {
+                if (!empty($cagetoryFilter)) {
+                    $q->whereHas('categories', function($ct) use ($cagetoryFilter) {
+                        $ct->where('id', $cagetoryFilter);
+                    });
+                }
+                if (!empty($brandFilter)) {
+                    $q->where('brandName', $brandFilter);
+                }
+            })
+            ->orderBy($orderBy, $order)
+            ->paginate($perPage);
+
+            $products->getCollection()->transform(function($product) {
+                /**
+                 * @var UserProduct $product
+                 */
+                $options = [];
+                foreach ($product->getOptionsArray() as $v) {
+                    $options[$v['name']] = $v['descriptions'];
+                }
+
+                $adminHost = Config::get('constants.adminHost');
+
+                $images = $product->getImageUrlsFullPath();
+                $images = array_filter($images, function($image) {
+                    return !empty($image["name"]);
+                });
+
+                return [
+                    'id' => $product->id,
+                    'page_url' => sprintf('%s/product-view/%s', $adminHost, $product->id),
+                    'images' => $images,
+                    'product_id' => $product->getProductID(),
+                    'brand_name' => $product->brandName,
+                    'name' => $product->name,
+                    'flag_price2' => $product->flagPrice2,
+                    'price' => $product->price,
+                    'price_txt' => $product->price_txt,
+                    'price2' => $product->price2,
+                    'price2_txt' => $product->price2_txt,
+                    'category_ids' => $product->getCategoryIds_(),
+                    'categories' => $product->getCategoryText(),
+                    'options' => $options,
+                    'detail' => $product->detail,
+                    'barcode' => $product->barcode,
+                    'sku' => $product->sku,
+                    'stock' => $product->stock
+                ];
+            });
+
+            return response()->json(array_merge([
+                'status' => true,
+                'count' => $products->count()
+            ], $products->toArray()));
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getAllCategory(Request $request)
+    {
+        try {
+            $categories = UserProductCategory::select('id', 'name')->orderBy('id', 'desc')->get();
+
+            return response()->json([
+                'status' => true,
+                'count' => $categories->count(),
+                'data' => $categories->toArray()
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getAllBrand(Request $request)
+    {
+        try {
+            $brands = UserProduct::select('brandName')->distinct()->orderBy('brandName', 'asc')->get();
+
+            return response()->json([
+                'status' => true,
+                'count' => $brands->count(),
+                'data' => $brands->toArray()
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => false,
+                'message' => $e->getMessage()
             ]);
         }
     }
